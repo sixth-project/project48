@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  #スタティックページの設定
+  devise_for :users
+  resources :users
   root 'static_pages#top'
 
   get 'static_pages/about'
