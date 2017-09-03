@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+taro:
+  name: taro
   profile: MyText
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
-two:
-  name: MyString
+jiro:
+  name: jiro
   profile: MyText
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
