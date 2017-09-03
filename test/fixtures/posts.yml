@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  content: MyText
+  picture: "orange"
+  created_at: <%= 10.minutes.ago %>
+
+two:
+  title: MyString
+  content: MyText
+  picture: "apple"
+  created_at: <%= 15.minutes.ago %>

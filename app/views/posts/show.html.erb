@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Picture:</strong> <!--showページ用の写真 2017/08/09/アーサ-->
+  <%= image_tag(@post.picture_url) if @post.picture.present? %>
+</p>
+
+<p>
+  <strong>Picture2:</strong>
+  <%= image_tag(@post.picture2_url) if @post.picture2.present? %>
+</p>
+
+<p>
+  <strong>Picture3:</strong>
+  <%= image_tag(@post.picture3_url) if @post.picture3.present? %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %>
+<!--<%= link_to 'Back', posts_path %> ShowのBackボタンいらない-->

@@ -1,0 +1,44 @@
+
+<%= form_for(post) do |f| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <span class="picture">
+    <%= f.file_field :picture, accept: 'image/jpeg, image/png' %>
+  </span>
+
+  <span class="picture2">
+    <%= f.file_field :picture2, accept: 'image/jpeg, image/png'  %>
+  </span>
+
+  <span class="picture3">
+    <%= f.file_field :picture3, accept: 'image/jpeg, image/png'  %>
+  </span>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </div>
+
+   <%= f.collection_select :user_id, User.all, :id, :id %>
+#<= f.hidden_field :user_id, value: current_user.id > 37行目Deviceでcurrent_userで使えるようになったら置き換え
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= render 'file_size' %>
