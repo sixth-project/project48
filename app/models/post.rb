@@ -1,16 +1,16 @@
 class Post < ApplicationRecord
-  #belongs_to :user
-  validates :user_id, presence: true
+  #belongs_to :user#
+  #validates :user_id, presence: true#
   validates :title, presence: true
   validates :content, presence: true
-  mount_uploader :picture, PictureUploader
-  mount_uploader :picture2, Picture2Uploader
-  mount_uploader :picture3, Picture3Uploader
+  #mount_uploader :picture, PictureUploader
+  #mount_uploader :picture2, Picture2Uploader
+  #mount_uploader :picture3, Picture3Uploader
 
   #独自のバリデーションの定義（画像サイズ）
-  validate :picture_size
-  validate :picture_size2
-  validate :picture_size3
+  #validate :picture_size
+  #validate :picture_size2
+  #validate :picture_size3
 
   private
 

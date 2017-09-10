@@ -34,8 +34,10 @@
     <%= f.text_area :content %>
   </div>
 
-   <%= f.collection_select :user_id, User.all, :id, :id %>
-#<= f.hidden_field :user_id, value: current_user.id > 37行目Deviceでcurrent_userで使えるようになったら置き換え
+  <div class="user_id">  <!-- ユーザーIDの受け渡し-->
+   <% f.hidden_field :user_id, value: current_user.id %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -4,8 +4,9 @@ taro:
   name: taro
   profile: MyText
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
-
+  email: test1@test.com
 jiro:
   name: jiro
   profile: MyText
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  email: test2@test.com
