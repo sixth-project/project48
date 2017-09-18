@@ -13,15 +13,22 @@
   <% end %>
 
   <span class="picture">
+    <%= image_tag(@post.picture.url) if @post.picture? %><!--validateエラーした時に画像を表示-->
+    <%= f.label :picture %>
     <%= f.file_field :picture, accept: 'image/jpeg, image/png' %>
+    <%= f.hidden_field :picture_cache %> <!--validateエラーした時に画像をキープ-->
   </span>
 
   <span class="picture2">
+    <%= f.label :picture2 %>
     <%= f.file_field :picture2, accept: 'image/jpeg, image/png'  %>
+    <%= f.hidden_field :picture2_cache %>
   </span>
 
   <span class="picture3">
+    <%= f.label :picture3 %>
     <%= f.file_field :picture3, accept: 'image/jpeg, image/png'  %>
+    <%= f.hidden_field :picture3_cache %>
   </span>
 
   <div class="field">

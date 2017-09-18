@@ -3,11 +3,12 @@
 one:
   title: MyString
   content: MyText
-  picture: "orange"
   created_at: <%= 10.minutes.ago %>
+  user: taro
+  
 
 two:
   title: MyString
   content: MyText
-  picture: "apple"
   created_at: <%= 15.minutes.ago %>
+  user: jiro

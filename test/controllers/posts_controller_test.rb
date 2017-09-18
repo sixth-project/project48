@@ -17,7 +17,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create post" do
     assert_difference('Post.count') do
-      post posts_url, params: { post: { content: @post.content, title: @post.title } }
+      post posts_url, params: { post: { content: @post.content, title: @post.title} }
     end
 
     assert_redirected_to post_url(Post.last)
@@ -45,4 +45,34 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to posts_url
   end
+
+#<!-- code above from here is created by scaffold --> 上はscaffoldで作成されたコード
+
+  test "should redirect create when not logged in" do #投稿する時にログインしてない場合createをリダイレクトtoログイン
+    assert_no_difference 'Post.count' do
+      post posts_url, params: { post: { content: @post.content, title: @post.title } }
+    end
+    assert_redirected_to("/users/sign_in")
+  end
+
+  test "should redirect destroy when not logged in" do #投稿を削除する時にログインしてない場合destroyをリダイレクトtoログイン
+    assert_no_difference 'Post.count' do
+      delete post_url(@post)
+    end
+    assert_redirected_to("/users/sign_in")
+  end
+
+  test "should redirect edit when not logged in" do #投稿を編集する時にログインしてない場合editをリダイレクトtoログイン
+   get edit_post_url(@post)
+   assert_not flash.empty?
+   assert_redirected_to("/users/sign_in")
+ end
+
+ test "should redirect update when not logged in" do #投稿を編集(update)する時にログインしてない場合updateをリダイレクトtoログイン
+    patch post_url(@post), params: { post: { title: @post.title,
+                                              content: @post.content } }
+    assert_not flash.empty?
+    assert_redirected_to("/users/sign_in")
+  end
+
 end

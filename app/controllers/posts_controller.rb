@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
+  before_action :set_current_user
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  #before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy] #ログインユーザーのみ可能なアクション
+  before_action :user_has_posted, only: [:new] #投稿済みの場合再度NEWページにアクセス出来ない
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy] #ポストの投稿者だけ編集可能(アプリケーションコントロ参照してください)
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy] #ログインユーザーのみ可能なアクション
   # GET /posts
   # GET /posts.json
   def index
@@ -10,6 +13,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+
   end
 
   # GET /posts/new
@@ -24,8 +28,9 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    #@post = Post.new(post_params)
     #@post.user = current_user
+    @post = current_user.build_post(post_params)
 
     respond_to do |format|
       if @post.save
@@ -70,6 +75,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content,:user_id, :picture, :picture2, :picture3)
+      params.require(:post).permit(:title, :content,:user_id, :picture, :picture_cache, :picture2, :picture_cache2, :picture3, :picture_cache3)
     end
 end
