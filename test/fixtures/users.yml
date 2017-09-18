@@ -2,12 +2,12 @@
 
 taro:
   name: taro
+  email: "taro@example.com"
   profile: MyText
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
-  email: test1@test.com
+  confirmed_at: <%= Time.now - 100 %>
 
-jiro:
-  name: jiro
-  profile: MyText
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
-  email: test2@test.com
+# jiro:
+#   name: jiro
+#   profile: MyText
+#   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>

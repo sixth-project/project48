@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  include Devise::TestHelpers
+  include Devise::Test::IntegrationHelpers
   setup do
     @user = users(:taro)
     sign_in(@user)
@@ -10,19 +10,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get users_url
     assert_response :success
-  end
-
-  test "should get new" do
-    get new_user_url
-    assert_response :success
-  end
-
-  test "should create user" do
-    assert_difference('User.count') do
-      post users_url, params: { user: { name: @user.name, profile: @user.profile } }
-    end
-
-    assert_redirected_to user_url(User.last)
   end
 
   test "should show user" do
