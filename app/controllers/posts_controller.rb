@@ -22,6 +22,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @post.picture.cache! unless @post.picture.blank? #carrierwaveのupdate時に画像が消えないようにキャッシュを残す。画像がある場合。
   end
 
   # POST /posts
