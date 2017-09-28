@@ -1,14 +1,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  # before_action :authenticate_user!
+  before_action :set_current_user #各コントローラで@current_userの呼び出しを可能にする
+
   def set_current_user
     @current_user = current_user
   end
 
   def user_has_posted #投稿済みの場合NEWページにアクセス出来ない
-    if @current_user.post
+    if user_signed_in? && @current_user.post
       flash[:notice] = "既に投稿済みです"
+      redirect_to(@current_user.post)
+    else
       redirect_to(root_url)
+      flash[:notice] = "ログインして下さい"
     end
   end
 

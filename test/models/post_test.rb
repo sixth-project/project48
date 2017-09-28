@@ -8,17 +8,17 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do #有効なポストかどうかの確認
-    assert @post.valid?
+    @post = @user.build_post(title: "Hello", content: "This is test post", picture: "rails.png" )
   end
 
   test "title should be present" do #ポストのタイトルは空白はダメ
-  @post.title = " "
-  assert_not @post.valid?
+    @post.title = " "
+    assert_not @post.valid?
   end
 
   test "content should be present" do #ポストのコンテンツは空白はダメ
-  @post.content = " "
-  assert_not @post.valid?
+    @post.content = " "
+    assert_not @post.valid?
   end
 
   test "user_id should be present" do #画像にuser_idが存在するか
@@ -36,7 +36,6 @@ class PostTest < ActiveSupport::TestCase
     assert_not @post.valid?
   end
 
-  
 
 
 
