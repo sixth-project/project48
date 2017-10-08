@@ -9,7 +9,10 @@ Rails.application.routes.draw do
 
   get 'static_pages/privacy'
 
-  root 'statoc_pages#top'
+  #ポストページのルート設定
+  resources :posts, only: [:show, :new, :edit, :create, :update, :destroy]
+  #ユーザーページのルート設定
+  resources :users
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

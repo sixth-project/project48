@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+
+  <p>
+  <strong>Picture:</strong>
+  <%= image_tag(@post.picture_url) if @post.picture.present? %>
+  </p>
+
+
+<p>
+  <strong>Picture2:</strong>
+  <%= image_tag(@post.picture2_url) if @post.picture2.present? %>
+</p>
+
+<p>
+  <strong>Picture3:</strong>
+  <%= image_tag(@post.picture3_url) if @post.picture3.present? %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<% if @post.user_id == @current_user.id %> <!--ポストしたユーザーが同一のIDの場合だけ編集ボタン表示する-->
+<%= link_to 'Edit', edit_post_path(@post) %>
+<!--<%= link_to 'Back', posts_path %> ShowのBackボタンいらない-->
+<% end %>
