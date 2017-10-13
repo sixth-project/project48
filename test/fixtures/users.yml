@@ -8,9 +8,10 @@ taro:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   confirmed_at: <%= Time.now - 100 %>
 
-
-
-# jiro:
-#   name: jiro
-#   profile: MyText
-#   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+jiro:
+  id: 2
+  name: jiro
+  email: "jiroro@example.com"
+  profile: MyText
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password2') %>
+  confirmed_at: <%= Time.now - 100 %>

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_current_user #各コントローラで@current_userの呼び出しを可能にする
+  before_filter :configure_permitted_parameters, if: :devise_controller? #Adminの設定
 
   def set_current_user
     @current_user = current_user
@@ -24,4 +25,12 @@ class ApplicationController < ActionController::Base
      redirect_to(root_url)
    end
   end
+
+  protected
+
+    def configure_permitted_parameters #Admin設定
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:admin])
+     devise_parameter_sanitizer.permit(:account_update, keys: [:admin])
+    end
+
 end
