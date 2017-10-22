@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include UsersHelper #UsersHelperをインクルードしてる(current_user?)
   protect_from_forgery with: :exception
   before_action :set_current_user #各コントローラで@current_userの呼び出しを可能にする
   before_filter :configure_permitted_parameters, if: :devise_controller? #Adminの設定
@@ -11,9 +12,6 @@ class ApplicationController < ActionController::Base
     if user_signed_in? && @current_user.post
       flash[:notice] = "既に投稿済みです"
       redirect_to(@current_user.post)
-    else
-      redirect_to(root_url)
-      flash[:notice] = "ログインして下さい"
     end
   end
 
@@ -25,6 +23,7 @@ class ApplicationController < ActionController::Base
      redirect_to(root_url)
    end
   end
+
 
   protected
 

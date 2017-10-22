@@ -1,0 +1,13 @@
+<tr>
+  <td><%= link_to user.name, user_path(user) %></td>
+  <td><%= user.profile %></td>
+  <!--<td><%= link_to 'Show', user %></td>-->
+
+  <% if current_user?(user) %> <!--user_helperを参照-->
+  <td><%= link_to 'Edit', edit_user_path(user) %></td>
+  <% end %>
+
+  <% if current_user.try(:admin?) && !current_user?(user) %> <!--current_user(ログインユーザーしてない為errorが起きるのでTryメソッドを使用している）-->
+  <td><%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %></td><!--Admin UserのみUser削除ボタンを表示-->
+  <% end %>
+</tr>

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :destroy] #ログインしてるユーザーが可能なアクション
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :correct_user, only: [:edit, :update] #正しいuserのみプロフのEditとupdateできる。
+  before_action :admin_user, only: :destroy #管理者のみDestroyできる
   # GET /users
   # GET /users.json
   def index
@@ -50,4 +52,16 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :profile)
     end
-end
+
+    def admin_user #Adminかどうかの確認(Adminではない場合はrootにリダイレクト)
+      redirect_to(root_path) unless current_user.admin?
+    end
+
+    def correct_user #自分のプロフィールのみeditとupdateが可能(違うuserがeditするとindexにredirect)
+      @user = User.find(params[:id])
+       unless @user == current_user
+        flash[:notice] = "このプロフィールの編集の権限がありません"
+        redirect_to(users_path)
+       end
+     end
+ end
