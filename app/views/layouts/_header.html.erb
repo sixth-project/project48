@@ -1,0 +1,29 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "48", root_path, id: "logo" %> #サイトロゴ
+    <nav>
+      <ul>
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Help", '#' %></li>
+
+        <% if user_signed_in? %>
+          <li><%= link_to "プロフィール", current_user %></li>
+          <li><%= link_to "My Post", current_user.post %></li> <%# ISSUE1 新規投稿と既に投稿した場合でリンクを切り替える必要あり？%>
+          <li><%= link_to "Blog", '#' %></li>
+          <li><%= link_to "チャット",'#' %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+          <li><%= link_to "新規登録", new_user_registration_path %></li>
+        <% end %>
+
+        <% if notice %>
+          <p class="notice"><%= notice %></p>
+        <% elsif alert %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+
+      </ul>
+    </nav>
+  </div>
+</header>
