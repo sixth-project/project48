@@ -7,7 +7,7 @@ include Warden::Test::Helpers
 
   def setup
     Warden.test_mode!
-    @user = users( :taro )
+    @user = users(:taro)
     login_as(@user, :scope => :user)
     @post = posts(:one)
     @post2 = posts(:two)

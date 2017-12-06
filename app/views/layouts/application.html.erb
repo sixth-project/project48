@@ -1,26 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Project48</title>
+    <title><%= full_title(yield(:title))%></title> <%#ページのタイトル表示 appliication helper参照%>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'layouts/shim' %>
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
-    <% else %>
-      <p><%= link_to "ログイン", new_user_session_path %></p>
-      <p><%= link_to "新規登録", new_user_registration_path %></p>
-    <% end %>
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
-    <% elsif alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
+    <%= render 'layouts/header' %>
+    <div class="container">
     <%= yield %>
-    <%= debug(params) if Rails.env.development? %> 
+    <%= render 'layouts/footer' %>
+    </div>
+    <%= debug(params) if Rails.env.development? %> <%#developmentの場合のみデバッグ情報を表示する%>
   </body>
 </html>
