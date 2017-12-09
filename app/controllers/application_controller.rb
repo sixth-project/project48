@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
+  include UsersHelper #UsersHelperをインクルードしてる(current_user?)
   protect_from_forgery with: :exception
   before_action :set_current_user #各コントローラで@current_userの呼び出しを可能にする
+  before_filter :configure_permitted_parameters, if: :devise_controller? #Adminの設定
 
   def set_current_user
     @current_user = current_user
@@ -10,9 +12,6 @@ class ApplicationController < ActionController::Base
     if user_signed_in? && @current_user.post
       flash[:notice] = "既に投稿済みです"
       redirect_to(@current_user.post)
-    else
-      redirect_to(root_url)
-      flash[:notice] = "ログインして下さい"
     end
   end
 
@@ -24,4 +23,13 @@ class ApplicationController < ActionController::Base
      redirect_to(root_url)
    end
   end
+
+
+  protected
+
+    def configure_permitted_parameters #Admin設定
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:admin])
+     devise_parameter_sanitizer.permit(:account_update, keys: [:admin])
+    end
+
 end

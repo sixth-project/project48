@@ -61,9 +61,10 @@ include Warden::Test::Helpers
   test "should redirect to sign_in when access new page without login" do #ログインしてない場合NEWポストにアクセスするとリダイレクトtoログイン ensure_correct_user
     delete destroy_user_session_path
     assert_redirected_to root_url
+    follow_redirect!
     get new_post_url
     assert_not flash.empty?
-    assert_redirected_to root_url
+    assert_redirected_to new_user_session_path
   end
 
   test "should redirect to sign_in when access edit page without login" do #自分以外の投稿を編集editしようとするとリダイレクトtoログイン

@@ -21,6 +21,11 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <% if @noadmin %> <!--Admin(管理者)のチェックボックス-->
+   <div><%= f.label :admin %><br />
+   <%= f.check_box :admin, {}, true, false %></div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
