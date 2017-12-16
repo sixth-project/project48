@@ -19,5 +19,23 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "user edit without avatar" do #Userのアバターがない場合(presence true)はuserのeditでvalidatesにひっかかる
+    login_as(@non_admin)
+    get edit_user_path(@non_admin)
+    assert_template 'users/edit'
+    patch user_path(@non_admin), params: {user: {name: "jiro2", profile: "jiro2のプロフィール", avatar: "" }}
+    assert_select 'div#error_explanation'
+    assert_template 'users/edit'
+  end
+
+  test "user edit with avatar" do #User editでアバターを追加した正しいprofile
+    picture = fixture_file_upload('test/fixtures/rails.png', 'image/png')
+    login_as(@non_admin)
+    get edit_user_path(@non_admin)
+    assert_template 'users/edit'
+    patch user_path(@non_admin), params: {user: {name: "jiro3", profile: "jiro3のプロフィール", avatar: picture}}
+    assert_redirected_to user_path(@non_admin)
+  end
+
 
 end

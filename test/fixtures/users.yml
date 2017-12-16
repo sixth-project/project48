@@ -16,3 +16,12 @@ jiro:
   profile: MyText
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   confirmed_at: <%= Time.now - 100 %>
+
+hanako:
+  id: 3
+  name:
+  email: "hanako@example.com"
+  profile:
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+  

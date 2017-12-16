@@ -50,7 +50,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :profile)
+      params.require(:user).permit(:name, :profile, :avatar)
     end
 
     def admin_user #Adminかどうかの確認(Adminではない場合はrootにリダイレクト)

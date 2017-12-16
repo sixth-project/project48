@@ -24,7 +24,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update user" do
-    patch user_url(@user), params: { user: { name: @user.name, profile: @user.profile } }
+    picture = fixture_file_upload('test/fixtures/rails.png', 'image/png')
+    patch user_url(@user), params: { user: { name: @user.name, profile: @user.profile, avatar: picture } }
     assert_redirected_to user_url(@user)
   end
 
