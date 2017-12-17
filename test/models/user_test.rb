@@ -2,17 +2,18 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
 
-  #def setup
-      #@user = User.new(name: "Example User", email: "user@example.com",
-                       #password: "hogehoge", password_confirmation: "hogehoge")
-    #end
+ def setup
+   @user = users(:hanako)
+ end
 
-  #test "associated posts should be destroyed" do #ユーザが削除されたらポストも削除Dependent_destroy
-    #@user.save
-    #@user.posts.create!(title: "ホゲホゲ", content: "これはテストです")
-    #assert_difference 'Post.count', -1 do
-      #@user.destroy
-    #end
-  #end
+ test "user should add avatar " do #アバターのavatar_file_nameは空だとinvalid
+   assert_not @user.valid?
+ end
+
+ test "profile should be 255 letters maximum" do #プロフィールの文字数は255文字まで
+   @user.profile = "a"*256
+   assert_not @user.valid?
+ end
+
 
 end

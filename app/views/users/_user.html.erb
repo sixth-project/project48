@@ -1,5 +1,6 @@
 <tr>
-  <td><%= link_to user.name, user_path(user) %></td>
+  <td><%= link_to image_tag(user.avatar(:thumb)), user_path(user) %></td> <!--ユーザーのアバター-->
+  <td><%= user.name %></td>
   <td><%= user.profile %></td>
   <!--<td><%= link_to 'Show', user %></td>-->
 
