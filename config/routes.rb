@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   #ポストページのルート設定
   resources :posts, only: [:show, :new, :edit, :create, :update, :destroy]
 
-
+  #Blogのルート設定
+  resources :blogs
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

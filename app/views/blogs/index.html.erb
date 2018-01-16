@@ -1,0 +1,19 @@
+<% provide(:title, "Blog Index") %>
+<h1>Blogのindexページです</h1>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+
+   <%= link_to 'New blog', new_blog_path %>
+
+  <% @blogs.each do |blog| %>
+  <tr>
+  <td><%= blog.title %></td>
+  <td><%= blog.text %></td>
+  <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
+  <td><%= link_to 'Destroy', blog_path(blog), method: :delete, data: { confirm: '本当に削除しますか？'}%></td>
+  </tr>
+  <% end %>
+</table>

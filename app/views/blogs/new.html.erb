@@ -1,0 +1,5 @@
+<% provide(:title, "New Blog") %>
+<h1>New Blogページです。</h1>
+
+<%= render 'form', blog: @blog %><!--Formのパーシャル-->
+<%= link_to 'Back', blogs_path %>
