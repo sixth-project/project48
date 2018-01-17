@@ -20,10 +20,12 @@ gem 'sass-rails',              '5.0.6'
 gem 'uglifier',                '3.2.0'
 gem 'coffee-rails',            '4.2.2'
 gem 'jquery-rails',            '4.3.1'
-gem 'turbolinks',              '5.0.1'
+gem 'turbolinks',              '5.0.1' #TinyMCEのEditorのJSが正常に動作しないので削除予定？（reloadしないとEditorが表示されない) application.jeのturbolinksは削除済み
 gem 'jbuilder',                '2.6.4'
 gem 'devise'
 gem "paperclip"
+gem 'tinymce-rails'
+
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'

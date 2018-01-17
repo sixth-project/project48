@@ -10,3 +10,31 @@
     text-align: center;
     img { width: 100% }
 }
+
+// tinymce 見た目
+.mce-tinymce {
+  .mce-menubar.mce-first {
+    display: none !important;
+  }
+  iframe {
+    height: 200px !important;
+  }
+}
+
+#tinymce {
+  padding: 0px 20px;
+}
+
+pre {
+    background: #F1F0EA;
+    border: 1px solid #DDDBCC;
+    border-radius: 3px;
+    padding: 15px 20px;
+    overflow: scroll;
+    white-space: pre;
+    font-size: 80%;
+}
+
+img {
+  max-width: 100%;
+}
