@@ -2,11 +2,12 @@
 hight: 200px
 width: 600px
 toolbar:
-  - styleselect | fontsizeselect | bold italic underline strikethrough | indent outdent | blockquote | link | codesample | bullist numlist
-  - code | undo redo
+  - styleselect | fontsizeselect | bold italic underline strikethrough | indent outdent | blockquote | link | uploadimage | codesample | bullist numlist
+  - code | undo redo |
 plugins:
   - link
   - codesample
   - textcolor
   - lists
   - code
+  - uploadimage

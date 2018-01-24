@@ -11,7 +11,7 @@
   <% @blogs.each do |blog| %>
   <tr>
   <td><%= blog.title %></td>
-  <td><%= sanitize blog.text, tags: %w(h1 h2 h3 h4 h5 h6 ul ol li p a img table tr td em br strong),  attributes:  %w(id class href) %></td> <%#Sanitzeヘルパーで許可するタグと属性を選別%>
+  <td><%= sanitize blog.text, tags: %w(h1 h2 h3 h4 h5 h6 ul ol li p a img table tr td em br strong),  attributes:  %w(id class href src) %></td> <%#Sanitzeヘルパーで許可するタグと属性を選別%>
   <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
   <td><%= link_to 'Destroy', blog_path(blog), method: :delete, data: { confirm: '本当に削除しますか？'}%></td>
   </tr>

@@ -1,5 +1,7 @@
 class BlogsController < ApplicationController
 
+ respond_to :json
+
   def new
     @blog = Blog.new
   end
@@ -42,9 +44,20 @@ class BlogsController < ApplicationController
     redirect_to blogs_path
   end
 
+  def upload_image #TinyMCEの画像のアップロード
+    image = Blog.create params.permit(:file, :alt, :hint )
+
+    render json: {
+      image: {
+        url: image.file.url
+      }
+    }, content_type: "text/html"
+  end
+
+
   private
 
   def blog_params
-  params.require(:blog).permit(:title, :text)
+  params.require(:blog).permit(:title, :text, :file, :hint, :alt)
   end
 end
