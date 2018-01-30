@@ -25,6 +25,8 @@
   <%= tinymce :text_css => asset_path('application.css')%>
 </p>
 
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
 <p>
   <%= f.submit %>
 </P>

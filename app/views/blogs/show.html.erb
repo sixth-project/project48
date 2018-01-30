@@ -12,6 +12,7 @@
 </p>
 
 
-
-<%= link_to 'Edit', edit_blog_path(@blog) %>
+<% if user_signed_in? && current_user.id == @blog.user_id %>
+<%= link_to 'Edit', edit_blog_path(@blog) %> |
 <%= link_to 'Back', blogs_path %>
+<% end %>

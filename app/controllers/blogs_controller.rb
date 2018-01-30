@@ -1,5 +1,7 @@
 class BlogsController < ApplicationController
-
+ before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+ before_action :correct_blog_owner, only: [:edit, :update, :destroy]
+ #上二つのbefore_actionのテストをかく
  respond_to :json
 
   def new
@@ -30,7 +32,6 @@ class BlogsController < ApplicationController
 
   def update
     @blog = Blog.find(params[:id])
-
     if @blog.update(blog_params)
       redirect_to @blog
     else
@@ -56,8 +57,15 @@ class BlogsController < ApplicationController
 
 
   private
+  def correct_blog_owner
+    @blog = Blog.find_by(id: params[:id])
+    if @blog.user_id != @current_user.id
+     flash[:notice] = "この記事のアクセス権限が有りません"
+     redirect_to root_url
+    end
+  end
 
   def blog_params
-  params.require(:blog).permit(:title, :text, :file, :hint, :alt)
+  params.require(:blog).permit(:title, :text, :file, :hint, :alt, :user_id)
   end
 end
