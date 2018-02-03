@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
- before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+ before_action :authenticate_user!, only: [:new, :create, :index, :edit, :update, :destroy]
  before_action :correct_blog_owner, only: [:edit, :update, :destroy]
- #上二つのbefore_actionのテストをかく
+
  respond_to :json
 
   def new
@@ -23,7 +23,7 @@ class BlogsController < ApplicationController
   end
 
   def index
-    @blogs = Blog.all
+    @blogs = current_user.blogs.all
   end
 
   def edit

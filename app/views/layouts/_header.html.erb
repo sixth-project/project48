@@ -14,7 +14,7 @@
           <% else %>
           <li><%= link_to "新規投稿", new_post_path %></li><%# 新規投稿と既に投稿した場合でリンクを切り替える(新規の場合のリンク)%>
           <% end %>
-          <li><%= link_to "Blog", '#' %></li>
+          <li><%= link_to "Blog", blogs_path %></li>
           <li><%= link_to "チャット",'#' %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
           <li class="round-image"><%= image_tag(current_user.avatar.url(:thumb)) %><li>
