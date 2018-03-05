@@ -20,6 +20,13 @@
 </p>
 
 <p>
+  <%= f.label :picture %>
+  <%= f.file_field :blogpicture, accept: 'image/jpeg,image/gif,image/png' %>
+  <%= image_tag blog.blogpicture.url if blog.blogpicture.present? %>
+  <%= f.hidden_field :blogpicture_cache %>
+</p>
+
+<p>
   <%= f.label :text %>
   <%= f.text_area :text, :class => "tinymce", :rows => 100, :cols => 120 %>
   <%= tinymce :text_css => asset_path('application.css')%>
@@ -30,4 +37,13 @@
 <p>
   <%= f.submit %>
 </P>
-  <% end %>
+ <% end %>
+
+ <script type="text/javascript">
+  $('#blog_blogpicture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('ファイルサイズを小さくして下さい。ファイルサイズは5MB迄です。');
+    }
+  });
+</script>

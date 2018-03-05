@@ -25,7 +25,7 @@ gem 'jbuilder',                '2.6.4'
 gem 'devise'
 gem "paperclip"
 gem 'tinymce-rails'
-gem 'tinymce-rails-imageupload', github: 'PerfectlyNormal/tinymce-rails-imageupload'
+
 
 
 group :development, :test do

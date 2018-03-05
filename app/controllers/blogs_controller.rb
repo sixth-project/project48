@@ -28,6 +28,7 @@ class BlogsController < ApplicationController
 
   def edit
     @blog = Blog.find(params[:id])
+    @blog.blogpicture.cache! unless @blog.blogpicture.blank?
   end
 
   def update
@@ -45,17 +46,6 @@ class BlogsController < ApplicationController
     redirect_to blogs_path
   end
 
-  def upload_image #TinyMCEの画像のアップロード
-    image = Blog.create params.permit(:file, :alt, :hint )
-
-    render json: {
-      image: {
-        url: image.file.url
-      }
-    }, content_type: "text/html"
-  end
-
-
   private
   def correct_blog_owner
     @blog = Blog.find_by(id: params[:id])
@@ -66,6 +56,6 @@ class BlogsController < ApplicationController
   end
 
   def blog_params
-  params.require(:blog).permit(:title, :text, :file, :hint, :alt, :user_id)
+  params.require(:blog).permit(:title, :text, :blogpicture, :user_id)
   end
 end
