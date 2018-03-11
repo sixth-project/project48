@@ -7,8 +7,12 @@
 </p>
 
 <p>
-  <strong>Picture</strong>
-  <%= image_tag(@blog.blogpicture.url, size: "200x200") %>
+  <!--<strong>Picture</strong>-->
+  <% if @blog.blogpicture? %>
+       <% @blog.blogpicture.each do |picture| %>
+       <%= image_tag(picture.url, size: "200x200") %>
+       <% end %>
+  <% end %>
 </p>
 
 <p>

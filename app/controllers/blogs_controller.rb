@@ -12,9 +12,10 @@ class BlogsController < ApplicationController
     @blog = Blog.new(blog_params)
 
     if @blog.save
-    redirect_to @blog
+    notice
+    redirect_to @blog, notice: "ブログが作成.保存されました。"
     else
-    render 'new'
+    render 'new', notice: "ブログが作成.保存されませんでした。"
     end
   end
 
@@ -28,13 +29,13 @@ class BlogsController < ApplicationController
 
   def edit
     @blog = Blog.find(params[:id])
-    @blog.blogpicture.cache! unless @blog.blogpicture.blank?
   end
 
   def update
     @blog = Blog.find(params[:id])
     if @blog.update(blog_params)
       redirect_to @blog
+      flash[:notice] = "ブログが更新されました。"
     else
       render 'edit'
     end
@@ -44,6 +45,7 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
     @blog.destroy
     redirect_to blogs_path
+    flash[:notice] = "ブログが削除されました。"
   end
 
   private
@@ -56,6 +58,6 @@ class BlogsController < ApplicationController
   end
 
   def blog_params
-  params.require(:blog).permit(:title, :text, :blogpicture, :user_id)
+  params.require(:blog).permit(:title, :text, {blogpicture: []}, :user_id)
   end
 end

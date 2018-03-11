@@ -3,15 +3,17 @@ class Blog < ApplicationRecord
   default_scope -> { order(created_at: :desc)}
   validates :title, presence: true, length: { maximum: 20}
   validates :text, presence: true, length: { maximum:300}
-  mount_uploader :blogpicture, BlogPictureUploader
-  #serialize :blogpictures, JSON
-  validate :blogpicture_size
-  validates :blogpicture, presence: true
 
-  def blogpicture_size
-    if blogpicture.size > 5.megabytes
-       errors.add(:picture, "ファイルサイズを小さくして下さい。ファイルサイズは5MB迄です")
-     end
-  end
+  mount_uploaders :blogpicture, BlogPictureUploader
+  serialize :blogpicture, JSON #carrierwave マルチアップロードの設定
+  validates :blogpicture, presence: true
+  validate :check_blogpictures #Blogにアップロードできる写真の枚数制限
+
+   def check_blogpictures #Blogにアップロードできる写真の枚数制限
+      if blogpicture.size > 2
+       errors.add(:blogpicture,"は2枚迄です。")
+      end
+   end
+
 
 end
