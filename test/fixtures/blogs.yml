@@ -5,6 +5,7 @@ one:
   user_id: 1
   title: MyString
   text: MyString
+  blogpicture: "rails.png"
 
 two:
   id: 2

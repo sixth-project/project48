@@ -6,7 +6,7 @@ class Blog < ApplicationRecord
 
   mount_uploaders :blogpicture, BlogPictureUploader
   serialize :blogpicture, JSON #carrierwave マルチアップロードの設定
-  validates :blogpicture, presence: true
+  validates :blogpicture, presence: true #seedを入れるときはオフにする!!
   validate :check_blogpictures #Blogにアップロードできる写真の枚数制限
 
    def check_blogpictures #Blogにアップロードできる写真の枚数制限
