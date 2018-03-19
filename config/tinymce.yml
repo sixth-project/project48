@@ -1,0 +1,12 @@
+#TinymceのEditorの設定
+hight: 200px
+width: 600px
+toolbar:
+  - styleselect | fontsizeselect | bold italic underline strikethrough | indent outdent | blockquote | link | codesample | bullist numlist
+  - code | undo redo |
+plugins:
+  - link
+  - codesample
+  - textcolor
+  - lists
+  - code
