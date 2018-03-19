@@ -8,7 +8,7 @@
 
    <%= link_to 'New blog', new_blog_path %>
 
-  <% @current_user.blogs.each do |blog| %>
+  <% @blogs.each do |blog| %>
   <tr>
   <td><%= blog.title %></td>
   <td><%= sanitize blog.text, tags: %w(h1 h2 h3 h4 h5 h6 ul ol li p a table tr td em br strong),  attributes:  %w(id class href src) %></td> <%#Sanitzeヘルパーで許可するタグと属性を選別%>
@@ -20,3 +20,5 @@
   <% end %>
 
 </table>
+
+<%= will_paginate @blog_page %>

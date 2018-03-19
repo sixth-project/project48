@@ -1,34 +1,37 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top navbar-default">
   <div class="container">
-    <%= link_to "48", root_path, id: "logo" %> #サイトロゴ
+    <%= link_to "48", root_path, id: "logo" %> <!--サイトロゴ-->
     <nav>
-      <ul>
+      <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Help", '#' %></li>
 
         <% if user_signed_in? %>
-          <li><%= link_to "プロフィール", current_user %></li>
-
-          <% if current_user.post.present? %>
-          <li><%= link_to "My Post", current_user.post %></li> <%# 新規投稿と既に投稿した場合でリンクを切り替える(投稿済みの場合のリンク)%>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <li class="round-image"><%= image_tag(current_user.avatar.url(:thumb)) %><li><!--プロフ写真-->
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "プロフィール", current_user %></li>
+              <% if current_user.post.present? %>
+              <li><%= link_to "My Post", current_user.post %></li> <%# 新規投稿と既に投稿した場合でリンクを切り替える(投稿済みの場合のリンク)%>
+              <% else %>
+              <li><%= link_to "新規投稿", new_post_path %></li><%# 新規投稿と既に投稿した場合でリンクを切り替える(新規の場合のリンク)%>
+              <% end %>
+              <li><%= link_to "Blog", blogs_path %></li>
+              <li><%= link_to "チャット",'#' %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
           <% else %>
-          <li><%= link_to "新規投稿", new_post_path %></li><%# 新規投稿と既に投稿した場合でリンクを切り替える(新規の場合のリンク)%>
+              <li><%= link_to "ログイン", new_user_session_path %></li>
+              <li><%= link_to "新規登録", new_user_registration_path %></li>
           <% end %>
-          <li><%= link_to "Blog", blogs_path %></li>
-          <li><%= link_to "チャット",'#' %></li>
-          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-          <li class="round-image"><%= image_tag(current_user.avatar.url(:thumb)) %><li>
-        <% else %>
-          <li><%= link_to "ログイン", new_user_session_path %></li>
-          <li><%= link_to "新規登録", new_user_registration_path %></li>
-        <% end %>
-
+            </ul>
+          </li>
         <% if notice %>
           <p class="notice"><%= notice %></p>
         <% elsif alert %>
           <p class="alert"><%= alert %></p>
         <% end %>
-
       </ul>
     </nav>
   </div>

@@ -9,6 +9,7 @@ class Blog < ApplicationRecord
   validates :blogpicture, presence: true #seedを入れるときはオフにする!!
   validate :check_blogpictures #Blogにアップロードできる写真の枚数制限
 
+
    def check_blogpictures #Blogにアップロードできる写真の枚数制限
       if blogpicture.size > 2
        errors.add(:blogpicture,"は2枚迄です。")
