@@ -15,3 +15,4 @@
 //= require_tree .
 //= require tinymce
 //= require bootstrap
+//= require toastr
