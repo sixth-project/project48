@@ -9,13 +9,12 @@
   </head>
 
   <body>
-        <%= tinymce_assets %> <!--Tinymce -->
         <%= render 'layouts/header' %>
     <div class="container">
     <%= yield %>
     <%= render 'layouts/footer' %>
     </div>
-    
+
     <!--Flashにメッセージがある時-->
     <% unless flash.empty? %>
        <script type="text/javascript" >

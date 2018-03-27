@@ -22,7 +22,6 @@ gem 'turbolinks',              '5.0.1' #TinyMCEのEditorのJSが正常に動作�
 gem 'jbuilder',                '2.6.4'
 gem 'devise'
 gem "paperclip"
-gem 'tinymce-rails'
 gem 'will_paginate',           '3.1.6'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'toastr-rails'

@@ -1,5 +1,4 @@
 
-<%= tinymce :relative_urls => false %>
 <%= form_for(blog) do |f| %>
 
   <% if blog.errors.any? %>
@@ -33,8 +32,7 @@
 
 <p>
   <%= f.label :text %>
-  <%= f.text_area :text, :class => "tinymce", :rows => 100, :cols => 120 %>
-  <%= tinymce :text_css => asset_path('application.css')%>
+  <%= f.text_area :text %>
 </p>
 
   <%= f.hidden_field :user_id, value: current_user.id %>
