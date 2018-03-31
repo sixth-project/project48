@@ -1,6 +1,7 @@
 class BlogsController < ApplicationController
  before_action :authenticate_user!, only: [:new, :create, :index, :edit, :update, :destroy]
  before_action :correct_blog_owner, only: [:edit, :update, :destroy]
+ before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
  respond_to :json
 
@@ -20,7 +21,7 @@ class BlogsController < ApplicationController
   end
 
   def show
-    @blog = Blog.find(params[:id])
+
   end
 
   def index
@@ -28,11 +29,11 @@ class BlogsController < ApplicationController
   end
 
   def edit
-    @blog = Blog.find(params[:id])
+
   end
 
   def update
-    @blog = Blog.find(params[:id])
+
     if @blog.update(blog_params)
       redirect_to @blog
       flash[:notice] = "ブログが更新されました。"
@@ -42,13 +43,18 @@ class BlogsController < ApplicationController
   end
 
   def destroy
-    @blog = Blog.find(params[:id])
+    
     @blog.destroy
     redirect_to blogs_path
     flash[:notice] = "ブログが削除されました。"
   end
 
   private
+
+  def set_blog
+    @blog = Blog.find(params[:id])
+  end
+
   def correct_blog_owner
     @blog = Blog.find_by(id: params[:id])
     if @blog.user_id != @current_user.id

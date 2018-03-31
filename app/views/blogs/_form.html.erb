@@ -23,11 +23,6 @@
   <%= f.file_field :blogpicture, accept: 'image/jpeg,image/gif,image/png', :multiple => true %>
   <%#= image_tag blog.blogpicture.url if blog.blogpicture.present? %>
   <%= f.hidden_field :blogpicture_cache %>
-  <% if blog.blogpicture? %>
-       <% blog.blogpicture.each do |bp| %>
-       <%= image_tag(bp.url) %>
-       <% end %>
-  <% end %>
 </p>
 
 <p>
