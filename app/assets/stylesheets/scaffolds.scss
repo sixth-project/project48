@@ -52,12 +52,12 @@ div {
 #notice {
   color: green;
 }
-
-.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
-}
+//deviseのregistrations（新規登録）エラーを出した時にフォームの赤いハイライトを消すためにオフにした。
+//.field_with_errors {
+  //padding: 2px;
+  //background-color: red;
+  //display: table;
+//}
 
 #error_explanation {
   width: 450px;

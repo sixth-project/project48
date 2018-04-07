@@ -1,0 +1,24 @@
+<% provide(:title, "Blog Index") %>
+<h1>Blogのindexページです</h1>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+
+   <%= link_to 'New blog', new_blog_path %>
+
+  <% @blogs.each do |blog| %>
+  <tr>
+  <td><%= blog.title %></td>
+  <td><%= blog.text %></td> 
+  <td><%= image_tag(blog.blogpicture[0].url, size: "40x40") if blog.blogpicture? %> <!--arrayファイルの選択[0]公式ページを参照-->
+  <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
+  <td><%= link_to 'Destroy', blog_path(blog), method: :delete, data: { confirm: '本当に削除しますか？'}%></td>
+  <td><a href="<%= blog_path(blog.id) %>"> Read more </a></td>
+  </tr>
+  <% end %>
+
+</table>
+
+<%= will_paginate @blog_page %>

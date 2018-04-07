@@ -9,11 +9,22 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
+        <%= render 'layouts/header' %>
     <div class="container">
     <%= yield %>
     <%= render 'layouts/footer' %>
     </div>
+
+    <!--Flashにメッセージがある時-->
+    <% unless flash.empty? %>
+       <script type="text/javascript" >
+         <% flash.each do |f| %>
+          <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+          toastr['<%= type %>']('<%= f[1] %>');
+         <% end %>
+       </script>
+    <% end %>
+
     <%= debug(params) if Rails.env.development? %> <%#developmentの場合のみデバッグ情報を表示する%>
   </body>
 </html>

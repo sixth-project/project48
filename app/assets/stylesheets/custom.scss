@@ -1,3 +1,29 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "toastr";
+
+/* universal */
+
+body {
+  padding-top: 30px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+/* プロフ写真 */
 .round-image {
     background-color: white;
     border: 1px solid #d9d9d9;
@@ -9,4 +35,10 @@
     overflow: hidden;
     text-align: center;
     img { width: 100% }
+}
+
+// トップページのnavbarのドロップダウンがクリックされた時
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    background-color: transparent;
+    color: #555;
 }
