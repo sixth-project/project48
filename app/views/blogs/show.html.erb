@@ -17,7 +17,7 @@
 
 <p>
   <strong>Text</strong>
-  <%= @blog.text %>
+  <%= simple_format(h(@blog.text)) %> <!--Blog textの改行 -->
 </p>
 
 
