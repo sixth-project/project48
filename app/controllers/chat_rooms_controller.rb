@@ -1,5 +1,6 @@
 class ChatRoomsController < ApplicationController
   before_action :authenticate_user!#ログインユーザーのみ可能なアクション
+  before_action :limit_chatrooms, only: :new #すでにチャットを作成済みの場合はリダイレクトされる（一人一つまで)
 
   def index
     @chat_rooms = ChatRoom.all
@@ -36,4 +37,11 @@ class ChatRoomsController < ApplicationController
   def chat_room_params
     params.require(:chat_room).permit(:title)
   end
+
+  def limit_chatrooms
+    if current_user.chat_rooms.present?
+      redirect_to chat_rooms_path, notice: "既にチャットが1つ存在しています。新たに作成する場合は削除してから新たに作成してください。"
+    end
+  end
+
 end
