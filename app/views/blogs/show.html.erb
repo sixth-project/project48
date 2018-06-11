@@ -17,7 +17,7 @@
 
 <p>
   <strong>Text</strong>
-  <%= simple_format(h(@blog.text)) %> <!--Blog textの改行 -->
+  <%= simple_format(text_url_to_link(h(@blog.text)).html_safe) %> <!--simple_formatでBlog textの改行 && アプリケーションヘルパーのtext_url_to_linkでtextのリンクを有効にしてる -->
 </p>
 
 

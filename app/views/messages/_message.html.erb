@@ -7,7 +7,7 @@
       <div class="col-md-11">
         <p class="card-text">
           <span class="text-muted"><%= message.user.name %> さん <%= message.timestamp %></span><br>
-          <p class="speech"><%= message.body %></p>
+          <p class="speech"><%= text_url_to_link(h(message.body)).html_safe %></p>
         </p>
       </div>
     </div>

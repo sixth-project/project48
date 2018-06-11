@@ -13,7 +13,7 @@
 
 <p>
   <strong>Profile:</strong>
-  <%= @user.profile %>
+  <%= simple_format(text_url_to_link(h(@user.profile)).html_safe) %> <!--simple_formatでUser textの改行 && アプリケーションヘルパーのtext_url_to_linkでtextのリンクを有効にしてる -->
 </p>
 
 <% if current_user?(@user) %> <!-- サインインしてるuserの時のみ表示する user_helper参照-->

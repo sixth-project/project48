@@ -26,12 +26,8 @@
 </p>
 
 <p>
-  <%= f.label :text %>
-  <% if blog.text? %> <!--BlogのTEXTが存在する場合 -->
-   <%= simple_format(h(blog.text)) %> <!--Blog textの改行処理 & タグのエスケープ処理 -->
-  <% else %>
-   <%= f.text_area :text %> <!--BlogのTEXTが存在しない場合TEXT AREAを表示する -->
-  <% end %>
+   <%= f.label :text %>
+   <%= f.text_area :text %>
 </p>
 
   <%= f.hidden_field :user_id, value: current_user.id %>
