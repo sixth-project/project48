@@ -1,2 +1,4 @@
 <li><%= link_to "Enter #{chat_room.title}", chat_room_path(chat_room) %></li>
+<% if current_user.chat_rooms.present? %>
 <%= link_to "チャットを削除する", chat_room_path(chat_room),  method: :delete, data: { confirm: "本当に削除しますか?" } %>
+<% end %>
